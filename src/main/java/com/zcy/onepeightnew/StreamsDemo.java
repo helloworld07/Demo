@@ -28,5 +28,6 @@ public class StreamsDemo {
         values.parallelStream().sorted().count();
         l1 = System.nanoTime();
         System.out.println(TimeUnit.NANOSECONDS.toMillis(l1 - l0));
+
     }
 }

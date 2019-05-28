@@ -37,13 +37,16 @@ public class LisThreadTest {
 //        Arrays.stream(i).forEach(q->i[q]=1);
         long a1 = System.currentTimeMillis();
         Arrays.setAll(i,q->i[q]=3);
-        System.out.println(i[999]);
+//        System.out.println(i[999]);
         long a2 = System.currentTimeMillis();
         System.out.println(a2-a1);//12
         long a3 = System.currentTimeMillis();
         Arrays.parallelSetAll(i,q->i[q]=3);
-        System.out.println(i[999]);
+//        System.out.println(i[999]);
         long a4 = System.currentTimeMillis();
         System.out.println(a4-a3);//39
+
+        Person person = list.get(1);
+        int i1 = i[1];
     }
 }

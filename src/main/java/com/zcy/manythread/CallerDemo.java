@@ -12,16 +12,21 @@ import static java.lang.Thread.sleep;
 public class CallerDemo implements Callable<String> {
     @Override
     public String call() throws Exception {
+        sleep(5000);
         String name = Thread.currentThread().getName();
         return name + "running!";
     }
 
     public static void main(String[] args) {
         FutureTask<String> stringFutureTask = new FutureTask<>(new CallerDemo());
-            new Thread(stringFutureTask).start();
+        ExecutorService executor = Executors.newFixedThreadPool(1);
+        executor.submit(stringFutureTask);
+//        new Thread(stringFutureTask).start();
         try {
-            String s = stringFutureTask.get();
+            System.out.println("before get");//即时执行
+            String s = stringFutureTask.get();//等待方法返回，阻塞
             System.out.println(s);
+            System.out.println("after get");//待get后才可输出
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

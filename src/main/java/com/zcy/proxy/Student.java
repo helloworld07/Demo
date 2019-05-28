@@ -13,6 +13,10 @@ public class Student implements Person{
 
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public void giveMoney(){
         System.out.println("give money!");
