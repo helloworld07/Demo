@@ -13,8 +13,10 @@ import java.util.function.Predicate;
  */
 public class TestRunDemo {
     public static void main(String[] args) {
-        System.out.println(false&false);
-        System.out.println(true&false);
-        System.out.println(true&true);
+        System.out.println("begin");
+        int a =6;
+        assert a == 7;
+        System.out.println(a);
+        System.out.println("end");
     }
 }
