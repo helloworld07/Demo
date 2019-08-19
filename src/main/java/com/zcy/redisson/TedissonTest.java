@@ -5,7 +5,7 @@ import com.zcy.manythread.selfpool.ExecutorPoolTest;
 /**
  * @author: George
  * @date: 2019/8/15
- * @description:
+ * @description: 分布式锁
  */
 public class TedissonTest {
     public static void main(String[] args) throws InterruptedException {
@@ -18,7 +18,7 @@ public class TedissonTest {
                         //多线程场景，线程处理需等待锁的释放，未测试效率如何？
                         //redisson应该应用于分布式场景中，多个系统可同时通过redis来获取同一个锁
                         //加锁
-                        RedisLockUtil.acquire(key);//woc?如果上次异常退出，key就一直锁住了？
+                        RedisLockUtil.acquire(key);//woc?如果上次异常退出，key就一直锁住了？-->这里有一个锁过期时间可以解决这个问题，但个人感觉不完美
                         //执行具体业务逻辑(暂时未想到合适的例子)
                         Thread.sleep(3000);
                         //释放锁
