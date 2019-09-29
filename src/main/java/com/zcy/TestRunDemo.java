@@ -12,11 +12,20 @@ import java.util.function.Predicate;
  * @description:
  */
 public class TestRunDemo {
+    public static boolean flag = true;
     public static void main(String[] args) {
-        System.out.println("begin");
-        int a =6;
-        assert a == 7;
-        System.out.println(a);
-        System.out.println("end");
+        final boolean f = true;
+        List list = new ArrayList<>();
+        list.add(1);
+        list.add(1);
+        list.add(1);
+        list.add(1);
+        list.add(1);
+
+        System.out.println(list);
+
+
+
+
     }
 }

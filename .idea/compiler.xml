@@ -6,10 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="demeboot" />
         <module name="Demo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="demeboot" target="1.8" />
       <module name="Demo" target="1.8" />
     </bytecodeTargetLevel>
   </component>
