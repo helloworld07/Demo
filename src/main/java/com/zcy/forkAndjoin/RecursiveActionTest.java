@@ -19,6 +19,7 @@ public class RecursiveActionTest {
     private final static AtomicInteger SUM = new AtomicInteger(0);
 
     public static void main(String[] args) throws InterruptedException {
+        //多线程
         final ForkJoinPool forkJoinPool = new ForkJoinPool();
         forkJoinPool.submit(new CalculateRecursiveAction(0, 100));
         forkJoinPool.awaitTermination(1, TimeUnit.SECONDS);
@@ -36,6 +37,7 @@ public class RecursiveActionTest {
             this.end = end;
         }
 
+        //主方法，执行方法
         @Override
         protected void compute() {
             // 如果起始和结束范围小于我们定义的区间范围，则直接计算
