@@ -20,9 +20,11 @@ public class RecursiveActionTest {
 
     public static void main(String[] args) throws InterruptedException {
         //多线程
-        final ForkJoinPool forkJoinPool = new ForkJoinPool();
+        final ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
         forkJoinPool.submit(new CalculateRecursiveAction(0, 100));
         forkJoinPool.awaitTermination(1, TimeUnit.SECONDS);
+//        forkJoinPool.awaitQuiescence(10, TimeUnit.SECONDS);
+//        forkJoinPool.shutdown();
         System.out.println(SUM);
     }
 

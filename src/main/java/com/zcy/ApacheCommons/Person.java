@@ -1,5 +1,7 @@
 package com.zcy.ApacheCommons;
 
+import java.util.Date;
+
 /**
  * @author: George
  * @date: 2019/4/18
@@ -8,6 +10,7 @@ package com.zcy.ApacheCommons;
 public class Person {
     private String name;
     private int age;
+    private Date date;
 
     public String getName() {
         return name;
@@ -24,4 +27,13 @@ public class Person {
     public void setAge(int age) {
         this.age = age;
     }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
 }

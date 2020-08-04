@@ -1,9 +1,14 @@
 package com.zcy.Caffeine;
 
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.map.MapUtil;
 import com.github.benmanes.caffeine.cache.*;
+import org.apache.commons.collections.ListUtils;
 
 import java.security.Key;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -14,7 +19,7 @@ import static java.lang.Thread.sleep;
 /**
  * @author: George
  * @date: 2019/9/2
- * @description:  Caffeine缓存
+ * @description: Caffeine缓存
  */
 public class CaffeineTest {
     public static void main(String[] args) throws InterruptedException {
@@ -24,7 +29,16 @@ public class CaffeineTest {
                 .expireAfterAccess(1, TimeUnit.SECONDS)
                 .maximumSize(10)
                 .build();
-        cache.put("hello", "hello123");//写入值
+        cache.put("hello1", "hello123");//写入值
+        cache.put("hello2", "hello123");//写入值
+        cache.put("hello3", "hello123");//写入值
+        cache.put("hello4", "hello123");//写入值
+        cache.put("hello5", "hello123");//写入值
+        List<String> l = CollectionUtil.newArrayList("hello1", "hello2", "qqq");
+        Map<String, String> allPresent = cache.getAllPresent(l);
+        allPresent.forEach((k,v)->{
+
+        });
         sleep(500);
         String hello = cache.getIfPresent("hello");//获取值，若没有则为null
         System.out.println(hello);
@@ -52,7 +66,7 @@ public class CaffeineTest {
                 .maximumSize(10_000)
                 .expireAfterWrite(10, TimeUnit.MINUTES)
                 // Either: Build with a synchronous computation that is wrapped as asynchronous
-                .buildAsync(key -> ketToValue2(key));
+                .buildAsync(CaffeineTest::ketToValue2);
         List<String> lists = new ArrayList<>();
         lists.add("yyy1");
         lists.add("yyy2");
@@ -60,6 +74,7 @@ public class CaffeineTest {
         lists.add("yyy4");
         lists.add("yyy5");
         CompletableFuture<Map<String, Object>> graphs = asyncLoadingCache.getAll(lists);
+
 
         //驱逐策略
         /*基于大小：
@@ -77,7 +92,7 @@ public class CaffeineTest {
         /*个人使用：监听器有延时，删除时并不一定会实时有返回*/
         Cache<String, String> cacheRemoval = Caffeine.newBuilder()
                 .removalListener((String key, String value, RemovalCause cause) ->
-                        System.out.println("delete,key:"+key+",value:"+value+",cause:"+cause))
+                        System.out.println("delete,key:" + key + ",value:" + value + ",cause:" + cause))
                 .expireAfterAccess(1, TimeUnit.SECONDS)
                 .build();
         cacheRemoval.put("hero jugg", "good");
