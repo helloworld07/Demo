@@ -1,4 +1,4 @@
-package com.example.demeboot.async.config;
+package com.demeboot.async.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

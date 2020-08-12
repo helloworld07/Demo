@@ -1,5 +1,7 @@
 package com.zcy.manythread;
 
+import cn.hutool.core.thread.ThreadUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -13,6 +15,7 @@ import java.util.stream.IntStream;
  * @author: George
  * @date: 2019/9/24
  * @description: StampedLock解决了在没有新数据写入时，由于过多读操作抢夺锁而使得写操作一直获取不到锁无法写入新数据的问题。
+ * 乐观读，悲观写。当有写入锁时，与ReentrantReadWriteLock读写锁一样，但是当没有写锁时，可少获取一次读锁，进而提高效率。
  */
 public class StampedLockTest {
     private static StampedLock lock = new StampedLock();
@@ -25,6 +28,7 @@ public class StampedLockTest {
         Runnable write = StampedLockTest::write;
 
         IntStream.range(0, 19).forEach(i -> executorService.submit(read));
+        ThreadUtil.sleep(1000);
         executorService.submit(write);
 
         executorService.shutdown();

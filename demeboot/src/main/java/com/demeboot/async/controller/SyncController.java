@@ -1,6 +1,6 @@
-package com.example.demeboot.async.controller;
+package com.demeboot.async.controller;
 
-import com.example.demeboot.async.service.SyncService;
+import com.demeboot.async.service.SyncService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

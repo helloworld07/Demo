@@ -1,6 +1,6 @@
-package com.example.demeboot.retelimter.aspect;
+package com.demeboot.retelimter.aspect;
 
-import com.example.demeboot.retelimter.entity.MyResult;
+import com.demeboot.retelimter.entity.MyResult;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.util.concurrent.RateLimiter;
@@ -37,7 +37,7 @@ public class RateLimitAop {
     @Autowired
     private HttpServletResponse response;
 
-    @Pointcut("@annotation(com.example.demeboot.retelimter.aspect.RateLimitAspect)")
+    @Pointcut("@annotation(com.demeboot.retelimter.aspect.RateLimitAspect)")
     public void serviceLimit() {
     }
 

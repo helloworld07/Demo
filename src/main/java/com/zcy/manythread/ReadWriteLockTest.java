@@ -21,16 +21,32 @@ public class ReadWriteLockTest {
     private static List<Long> data = new ArrayList<>();
 
     public static void main(String[] args) throws InterruptedException {
-        new Thread(() -> {
-            while (true) {
-                write();
-            }
-        }, "writer").start();
-        new Thread(() -> {
-            while (true) {
-                read();
-            }
-        }, "reader").start();
+        System.out.println(0);
+        readLock.lock();
+        System.out.println(1);
+        writeLock.lock(); // 写锁
+        System.out.println(2);
+//        readLock.lock(); // 获取读锁
+        System.out.println(3);
+        writeLock.unlock();
+        System.out.println(4);
+        readLock.unlock();
+        System.out.println(5);
+
+
+
+
+
+//        new Thread(() -> {
+//            while (true) {
+//                write();
+//            }
+//        }, "writer").start();
+//        new Thread(() -> {
+//            while (true) {
+//                read();
+//            }
+//        }, "reader").start();
 
     }
 

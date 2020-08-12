@@ -1,7 +1,7 @@
-package com.example.demeboot.retelimter.controller;
+package com.demeboot.retelimter.controller;
 
-import com.example.demeboot.retelimter.aspect.RateLimitAspect;
-import com.example.demeboot.retelimter.entity.MyResult;
+import com.demeboot.retelimter.aspect.RateLimitAspect;
+import com.demeboot.retelimter.entity.MyResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

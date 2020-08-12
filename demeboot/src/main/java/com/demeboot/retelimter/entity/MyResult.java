@@ -1,4 +1,4 @@
-package com.example.demeboot.retelimter.entity;
+package com.demeboot.retelimter.entity;
 
 import lombok.Data;
 

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.demeboot.shiro.dao.BaseDao">
+    <insert id="saveUser">
+        insert into `user` (id,`name`,`password`,role_id)
+        VALUES
+        <foreach collection="roles" item="item" separator=",">
+            (#{id},#{name},#{password},#{item.id});
+        </foreach>
+    </insert>
+
+    <insert id="saveRole">
+        insert into `role` (id,role_name,user_id) VALUES (#{id},#{role_name},#{user_id});
+    </insert>
+
+    <select id="findByName" resultType="com.demeboot.shiro.entity.User">
+        select u.id,u.`name`,u.`password`,roles.id,roles.role_name from `user` u
+        left join role roles on u.id = roles.user_id
+        where `name` = #{name};
+    </select>
+</mapper>
