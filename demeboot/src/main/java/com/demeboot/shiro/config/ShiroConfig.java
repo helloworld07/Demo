@@ -44,8 +44,9 @@ public class ShiroConfig {
         filterMap.put("/swagger**/**", "anon");
         filterMap.put("/webjars/**", "anon");
         filterMap.put("/v2/**", "anon");
+        filterMap.put("/test/**", "anon");
         // 对所有用户认证
-        filterMap.put("/**", "authc");
+//        filterMap.put("/**", "authc");
         // 登录
         shiroFilterFactoryBean.setLoginUrl("/login");
         // 首页
