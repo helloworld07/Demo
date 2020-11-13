@@ -8,9 +8,9 @@ import java.util.Date;
  * @description:
  */
 public class Person {
-    private String name;
-    private int age;
-    private Date date;
+    public String name;
+    public int age;
+    public Date date;
 
     public String getName() {
         return name;

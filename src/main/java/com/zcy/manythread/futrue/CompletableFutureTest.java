@@ -3,6 +3,9 @@ package com.zcy.manythread.futrue;
 import lombok.SneakyThrows;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
@@ -29,13 +32,19 @@ public class CompletableFutureTest {
         System.out.println(future3.get());
 
         AtomicInteger atomicInteger = new AtomicInteger(0);
-        for (int i = 0; i < 10000; i++) {
-            CompletableFuture<Void> future4 = CompletableFuture.runAsync(() -> {
-//                System.out.println(Thread.currentThread() + "Process...");
-                atomicInteger.getAndAdd(1);
-            });
-        }
-        System.out.println(atomicInteger.get());
+        ExecutorService executorService = Executors.newFixedThreadPool(5);
+        CompletableFuture<AtomicInteger> future4 = CompletableFuture.supplyAsync(() -> {
+            for (int i = 0; i < 1000000; i++) {
+                atomicInteger.addAndGet(1);
+            }
+            return atomicInteger;
+        },executorService)
+                .thenApply(a -> {
+                    a.set(a.get() / 5000);
+                    return a;
+                });//supplyAsync计算完成后thenApply再开始计算
+        System.out.println(future4.get());
+        executorService.shutdown();
 
     }
 }
